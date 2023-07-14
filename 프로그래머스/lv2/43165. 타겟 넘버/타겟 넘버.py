@@ -1,18 +1,14 @@
-from collections import deque
 def solution(numbers, target):
+    n = len(numbers)
     answer = 0
-    que = deque()
-    n=len(numbers)
-    que.append([numbers[0],0])
-    que.append([-1*numbers[0],0])
-    while que:#큐가 비어있지 않는동안 실행
-        tmp,idx = que.popleft()
-        idx += 1
-        if idx<n:
-            que.append([tmp+numbers[idx],idx]) 
-            que.append([tmp-1*numbers[idx],idx])
-            
-        else:
-            if tmp == target:
+    def dfs(idx, result):
+        if idx == n:
+            if result == target:
+                nonlocal answer # 전역변수로 사용하기 위해 nonlocal 사용
                 answer += 1
+            return
+        else:
+            dfs(idx+1, result+numbers[idx])
+            dfs(idx+1, result-numbers[idx])
+    dfs(0,0)
     return answer
