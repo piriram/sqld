@@ -1,7 +1,7 @@
 def solution(arr):
     hi = set(arr)
-    print(hi)
-
+    print(hi) # 카운팅 정렬을 쓰지 않고 빠르게 하는 방법 -> 종류들을 집합처리
+    
     return min(len(arr)/2, len(set(arr)))
 
 # # N/2개 수집할 때 최대한 많은 종류의 폰켓몬 수집
